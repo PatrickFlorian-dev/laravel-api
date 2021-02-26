@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostsApiController extends Controller
 {
 
-    // Secure this with Auth
+    // Secure this with Auth automatically
     public function __construct()
     {
         $this->middleware('auth');
