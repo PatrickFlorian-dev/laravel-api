@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\PostsApiController;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Only return 100 records, quickview
+Route::get('/posts', [PostsApiController::class, 'index']);
+
+// Insert a new post record
+Route::post('/posts', [PostsApiController::class, 'insert']);
+
+// Update a post record
+Route::put('/posts/{post}', [PostsApiController::class, 'update']);
+
+// Delete a post record
+Route::delete('/posts/{post}', [PostsApiController::class, 'delete']);
